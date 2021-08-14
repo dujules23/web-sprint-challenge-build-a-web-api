@@ -13,7 +13,10 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Pull your server into this file and start it!
 */
 const server = require('./api/server')
+const dotenv = require("dotenv").config()
 
-server.listen(4000, ()=> {
-  console.log('\n* Server Running on http://localhost:4000 *\n')
+const port = process.env.PORT || 4000
+
+server.listen(port, ()=> {
+  console.log(`\n* Server Running on ${port} *\n`)
 })
