@@ -3,6 +3,7 @@ const server = express();
 
 // bring in routers
 const projectRouter = require('./projects/projects-router')
+const actionRouter = require('./actions/actions-router')
 
 
 // Configure your server here
@@ -15,6 +16,7 @@ server.use(express.json())
 
 // Use Routers
 server.use("/api/projects", projectRouter)
+server.use("/api/actions", actionRouter)
 
 
 module.exports = server;

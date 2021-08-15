@@ -45,9 +45,31 @@ const validateProject = (req, res, next) => {
   }
 }
 
+// Validate Actions
+const validateActions = async (req, res, next) => {
+  const { projectId } = req.params
+
+  const actions = await Projects.getProjectActions(projectId)
+
+  try {
+    if(!actions){
+      res.status(404).json({ message: "project not found"})
+    }
+    else{
+      req.actions = actions
+      next();
+    }
+  }
+  catch{
+    res.status(500).json({ message: "error finding actions"})
+  }
+
+}
+
 // export Middleware functions
 
 module.exports ={
   validateProjectId,
-  validateProject
+  validateProject,
+  validateActions
 }

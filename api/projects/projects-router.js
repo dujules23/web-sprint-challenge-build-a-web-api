@@ -6,7 +6,7 @@ const router = express.Router()
 const Projects = require('./projects-model')
 
 // Bring in Middleware Functions
-const { validateProjectId, validateProject } = require("./projects-middleware")
+const { validateProjectId, validateProject, validateActions } = require("./projects-middleware")
 // Projects Endpoints
 
 
@@ -48,6 +48,13 @@ router.delete("/:id",validateProjectId, async(req, res) => {
 
   const deletedProject = await Projects.remove(req.params.id)
   res.status(204).json(deletedProject)
+})
+
+
+// Come back to this tomorrow
+// Get an Array of actions w/ id
+router.get("/:id/actions", validateActions, (req, res)=> {
+  res.status(200).json(req.actions)
 })
 
 // export router
