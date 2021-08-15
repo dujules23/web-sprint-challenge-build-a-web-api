@@ -36,6 +36,14 @@ router.post("/", validateProject, async (req, res) => {
   res.status(201).json(project)
 })
 
+// Update an Array of Projects (Put request)
+
+router.put("/:id", validateProjectId, validateProject, async (req, res) => {
+
+  const updatedProject = await Projects.update(req.params.id, req.body)
+  res.status(201).json(updatedProject)
+})
+
 // export router
 
 module.exports = router
