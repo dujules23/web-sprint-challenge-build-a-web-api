@@ -45,8 +45,9 @@ router.put("/:id", validateProjectId, validateProject, async (req, res) => {
 
 // Delete an Array of Projects
 router.delete("/:id",validateProjectId, async(req, res) => {
-
+  
   const deletedProject = await Projects.remove(req.params.id)
+  console.log(deletedProject)
   res.status(204).json(deletedProject)
 })
 

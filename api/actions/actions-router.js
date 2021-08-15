@@ -44,5 +44,13 @@ router.put("/:id", validateActionsId, validateActionsBody, async (req, res) => {
   res.status(200).json(updatedAction)
 })
 
+// Delet an array of actions
+router.delete("/:id", validateActionsId, async (req, res) => {
+
+  const deletedAction = await Actions.remove(req.params.id)
+  console.log(req.params.id)
+  res.status(204).json(deletedAction)
+})
+
 // Export router
 module.exports = router
