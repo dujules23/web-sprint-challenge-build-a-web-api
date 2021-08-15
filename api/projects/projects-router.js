@@ -37,11 +37,17 @@ router.post("/", validateProject, async (req, res) => {
 })
 
 // Update an Array of Projects (Put request)
-
 router.put("/:id", validateProjectId, validateProject, async (req, res) => {
 
   const updatedProject = await Projects.update(req.params.id, req.body)
   res.status(201).json(updatedProject)
+})
+
+// Delete an Array of Projects
+router.delete("/:id",validateProjectId, async(req, res) => {
+
+  const deletedProject = await Projects.remove(req.params.id)
+  res.status(204).json(deletedProject)
 })
 
 // export router
