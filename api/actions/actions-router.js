@@ -38,7 +38,11 @@ router.post("/", validateActionsBody, async (req, res) => {
   res.status(201).json(newAction)
 })
 
-
+// Update an array of actions (Put request)
+router.put("/:id", validateActionsId, validateActionsBody, async (req, res) => {
+  const updatedAction = await Actions.update(req.params.id, req.body)
+  res.status(200).json(updatedAction)
+})
 
 // Export router
 module.exports = router
