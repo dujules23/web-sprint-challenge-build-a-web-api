@@ -8,7 +8,7 @@ const Actions = require("./actions-model")
 
 
 // Bring in Middleware
-const { validateActionsId } = require("./actions-middlware")
+const { validateActionsId, validateActionsBody } = require("./actions-middlware")
 
 
 // Actions endpoints
@@ -30,6 +30,12 @@ router.get("/", (req, res) => {
 // Get an array of actions by Id
 router.get("/:id", validateActionsId, (req,res) => {
   res.status(200).json(req.actions)
+})
+
+// Post an Array of actions
+router.post("/", validateActionsBody, async (req, res) => {
+  const newAction = await Actions.insert(req.body)
+  res.status(201).json(newAction)
 })
 
 

@@ -32,8 +32,8 @@ router.get("/:id", validateProjectId, (req, res) => {
 
 // Post an Array of Projects
 router.post("/", validateProject, async (req, res) => {
-  const project = await Projects.insert(req.body)
-  res.status(201).json(project)
+  const newProject = await Projects.insert(req.body)
+  res.status(201).json(newProject)
 })
 
 // Update an Array of Projects (Put request)

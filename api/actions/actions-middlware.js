@@ -25,8 +25,30 @@ const validateActionsId = async (req, res, next) => {
 
 }
 
+
+// Validate Actions Body is correct
+const validateActionsBody = (req, res, next) => {
+
+  console.log(req.body)
+  const { project_id, description, notes } = req.body
+  console.log(req.body)
+
+  try{
+    if(!project_id || !description || !notes){
+      res.status(400).json({message: "Please make sure to have project_id, description, or notes filled out"})
+    }
+    else{
+      next();
+    }
+  }
+  catch{
+    res.status(500).json({message: "error finding project"})
+  }
+}
+
 // export middleware
 
 module.exports ={
-  validateActionsId
+  validateActionsId, 
+  validateActionsBody
 }
