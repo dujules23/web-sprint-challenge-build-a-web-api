@@ -10,6 +10,9 @@ const projectRouter = require('./projects/projects-router')
 // Build your projects router in /api/projects/projects-router.js
 // Do NOT `server.listen()` inside this file!
 
+// Use this to make sure the body can be read, otherwise it cannot read json
+server.use(express.json())
+
 // Use Routers
 server.use("/api/projects", projectRouter)
 

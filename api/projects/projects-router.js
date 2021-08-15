@@ -6,7 +6,7 @@ const router = express.Router()
 const Projects = require('./projects-model')
 
 // Bring in Middleware Functions
-const { validateProjectId } = require("./projects-middleware")
+const { validateProjectId, validateProject } = require("./projects-middleware")
 // Projects Endpoints
 
 
@@ -29,6 +29,12 @@ router.get("/:id", validateProjectId, (req, res) => {
   res.status(200).json(req.project)
 })
 
+
+// Post an Array of Projects
+router.post("/", validateProject, async (req, res) => {
+  const project = await Projects.insert(req.body)
+  res.status(201).json(project)
+})
 
 // export router
 

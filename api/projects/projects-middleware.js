@@ -25,10 +25,29 @@ const validateProjectId = async (req, res, next) => {
 
 }
 
+// Validate Project Body is correct
+const validateProject = (req, res, next) => {
 
+  console.log(req.body)
+  const { name, description } = req.body
+  console.log(req.body)
+
+  try{
+    if(!name || !description){
+      res.status(400).json({message: "Please make sure to have name, description, completed, or actions filled out"})
+    }
+    else{
+      next();
+    }
+  }
+  catch{
+    res.status(500).json({message: "error finding project"})
+  }
+}
 
 // export Middleware functions
 
 module.exports ={
-  validateProjectId
+  validateProjectId,
+  validateProject
 }
