@@ -6,7 +6,7 @@ const router = express.Router()
 const Projects = require('./projects-model')
 
 // Bring in Middleware Functions
-const { validateProjectId, validateProject, validateActions } = require("./projects-middleware")
+const { validateProjectId, validateProject } = require("./projects-middleware")
 // Projects Endpoints
 
 
@@ -52,10 +52,17 @@ router.delete("/:id",validateProjectId, async(req, res) => {
 })
 
 
-// Come back to this tomorrow
+// Does not need middleware
 // Get an Array of actions w/ id
-router.get("/:id/actions", validateActions, (req, res)=> {
-  res.status(200).json(req.actions)
+router.get("/:id/actions", (req, res)=> {
+  Projects.getProjectActions(req.params.id)
+    .then(project => {
+      res.status(200).json(project)
+    })
+    .catch(err => {
+       res.status(404).json({message: "Could not find actions", err})
+    })
+  
 })
 
 // export router
