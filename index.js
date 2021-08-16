@@ -12,13 +12,23 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Pull your server into this file and start it!
 */
+const express = require("express")
 const server = require('./api/server')
 const dotenv = require("dotenv").config()
 const cors = require("cors")
 
 const port = process.env.PORT || 4000
 
+// path allows you to create paths
+const path = require("path")
+
 server.use(cors())
+
+// tells express to access a static page (html, tc.)
+// put in one parameter along with the working path
+// this specifically goes to the home page
+server.use(express.static(path.join(__dirname, "client/build")))
+
 
 server.use("/api*", (_,res) => {
   res.json({
