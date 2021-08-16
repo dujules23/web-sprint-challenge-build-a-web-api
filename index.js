@@ -20,6 +20,12 @@ const port = process.env.PORT || 4000
 
 server.use(cors())
 
+server.use("/api*", (_,res) => {
+  res.json({
+    data: "The Api is working!"
+  })
+})
+
 server.listen(port, ()=> {
   console.log(`\n* Server Running on ${port} *\n`)
 })
