@@ -29,3 +29,5 @@ server.use("/api*", (_,res) => {
 server.listen(port, ()=> {
   console.log(`\n* Server Running on ${port} *\n`)
 })
+
+console.log(dotenv)
