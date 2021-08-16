@@ -14,8 +14,11 @@ Pull your server into this file and start it!
 */
 const server = require('./api/server')
 const dotenv = require("dotenv").config()
+const cors = require("cors")
 
 const port = process.env.PORT || 4000
+
+server.use(cors())
 
 server.listen(port, ()=> {
   console.log(`\n* Server Running on ${port} *\n`)
